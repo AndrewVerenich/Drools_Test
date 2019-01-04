@@ -1,0 +1,25 @@
+plugins {
+    id 'java'
+}
+
+group 'by.andver'
+version '1.0-SNAPSHOT'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+def springVersion="4.3.18.RELEASE"
+dependencies {
+    // https://mvnrepository.com/artifact/org.springframework/spring-core
+    compile group: 'org.springframework', name: 'spring-core', version: "$springVersion"
+    // https://mvnrepository.com/artifact/org.springframework/spring-context
+    compile group: 'org.springframework', name: 'spring-context', version: "$springVersion"
+    // https://mvnrepository.com/artifact/org.springframework/spring-beans
+    compile group: 'org.springframework', name: 'spring-beans', version: "$springVersion"
+
+
+
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+}
