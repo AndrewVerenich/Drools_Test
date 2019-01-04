@@ -18,6 +18,12 @@ dependencies {
     compile group: 'org.springframework', name: 'spring-context', version: "$springVersion"
     // https://mvnrepository.com/artifact/org.springframework/spring-beans
     compile group: 'org.springframework', name: 'spring-beans', version: "$springVersion"
+    // https://mvnrepository.com/artifact/org.drools/drools-core
+    compile group: 'org.drools', name: 'drools-core', version: '7.0.0.Final'
+    // https://mvnrepository.com/artifact/org.kie/kie-spring
+    compile group: 'org.kie', name: 'kie-spring', version: '7.0.0.Final'
+
+
 
 
 
