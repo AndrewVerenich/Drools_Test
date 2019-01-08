@@ -1,17 +1,34 @@
 package by.andver;
 
+import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
+import java.time.temporal.TemporalAccessor;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.Locale;
 import java.util.concurrent.TimeUnit;
 
 public class Employee {
     private String name;
     private String surname;
     private int age;
-    private Date employmentDate;
+    private LocalDate employmentDate;
     private int vacationsDays;
 
 
     public Employee() {
+    }
+
+    public long getWorkingYears(){
+        LocalDate l1=LocalDate.from(employmentDate);
+        LocalDate l2=LocalDate.now();
+        return ChronoUnit.YEARS.between(l1,l2);
+    }
+
+    private static Calendar getCalendar(Date date) {
+        Calendar cal = Calendar.getInstance(Locale.US);
+        cal.setTime(date);
+        return cal;
     }
 
     public String getName() {
@@ -38,16 +55,11 @@ public class Employee {
         this.age = age;
     }
 
-    public long getWorkingDays (){
-        long diffInMilliseconds = Math.abs(employmentDate.getTime() - (new Date()).getTime());
-        return TimeUnit.DAYS.convert(diffInMilliseconds, TimeUnit.MILLISECONDS);
-    }
-
-    public Date getEmploymentDate() {
+    public LocalDate getEmploymentDate() {
         return employmentDate;
     }
 
-    public void setEmploymentDate(Date employmentDate) {
+    public void setEmploymentDate(LocalDate employmentDate) {
         this.employmentDate = employmentDate;
     }
 
