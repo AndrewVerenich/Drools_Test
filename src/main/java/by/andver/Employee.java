@@ -1,6 +1,7 @@
 package by.andver;
 
 import java.util.Date;
+import java.util.concurrent.TimeUnit;
 
 public class Employee {
     private String name;
@@ -35,6 +36,11 @@ public class Employee {
 
     public void setAge(int age) {
         this.age = age;
+    }
+
+    public long getWorkingDays (){
+        long diffInMilliseconds = Math.abs(employmentDate.getTime() - (new Date()).getTime());
+        return TimeUnit.DAYS.convert(diffInMilliseconds, TimeUnit.MILLISECONDS);
     }
 
     public Date getEmploymentDate() {

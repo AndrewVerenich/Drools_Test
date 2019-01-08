@@ -1,10 +1,15 @@
 dialect "java"
 import by.andver.Employee
-import java.util.Date
 
-rule "Set Vacations Days"
+rule "Set Vacations Days1"
   when
-    employeeObject: Employee(true);
+    employeeObject: Employee(getWorkingDays()>=1095);
   then
     employeeObject.setVacationsDays(28);
+end
+rule "Set Vacations Days2"
+  when
+    employeeObject: Employee(getWorkingDays()<1095);
+  then
+    employeeObject.setVacationsDays(24);
 end
