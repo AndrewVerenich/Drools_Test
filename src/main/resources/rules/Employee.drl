@@ -3,13 +3,13 @@ import by.andver.Employee
 
 rule "Set Vacations Days1"
   when
-    employeeObject: Employee(getWorkingDays()>=1095);
+    employeeObject: Employee(getWorkingYears()>=3);
   then
     employeeObject.setVacationsDays(28);
 end
 rule "Set Vacations Days2"
   when
-    employeeObject: Employee(getWorkingDays()<1095);
+    employeeObject: Employee(getWorkingYears()<3);
   then
     employeeObject.setVacationsDays(24);
 end
