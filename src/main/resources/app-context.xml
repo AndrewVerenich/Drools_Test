@@ -10,7 +10,8 @@
 
     <drools:kbase id="employeeBase">
         <drools:resources>
-            <drools:resource type="DRL" source="classpath:rules/Employee.drl" />
+            <!--<drools:resource type="DRL" source="classpath:rules/Employee.drl" />-->
+            <drools:resource type="DTABLE" source="classpath:rules/Employee.xls" />
         </drools:resources>
     </drools:kbase>
 
