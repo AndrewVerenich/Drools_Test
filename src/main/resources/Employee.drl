@@ -1,8 +1,0 @@
-dialect "java"
-import by.andver.Employee
-rule "rule_test"
-  when
-    Employee(age> 20)
-  then
-    System.out.println("Success!");
-end

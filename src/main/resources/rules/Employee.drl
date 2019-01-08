@@ -1,0 +1,10 @@
+dialect "java"
+import by.andver.Employee
+import java.util.Date
+
+rule "Set Vacations Days"
+  when
+    employeeObject: Employee(true);
+  then
+    employeeObject.setVacationsDays(28);
+end
