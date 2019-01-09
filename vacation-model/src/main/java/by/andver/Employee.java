@@ -2,11 +2,6 @@ package by.andver;
 
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
-import java.time.temporal.TemporalAccessor;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.Locale;
-import java.util.concurrent.TimeUnit;
 
 public class Employee {
     private String name;
@@ -23,12 +18,6 @@ public class Employee {
         LocalDate l1=LocalDate.from(employmentDate);
         LocalDate l2=LocalDate.now();
         return ChronoUnit.YEARS.between(l1,l2);
-    }
-
-    private static Calendar getCalendar(Date date) {
-        Calendar cal = Calendar.getInstance(Locale.US);
-        cal.setTime(date);
-        return cal;
     }
 
     public String getName() {

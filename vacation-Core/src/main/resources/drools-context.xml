@@ -1,12 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xmlns:context="http://www.springframework.org/schema/context"
        xmlns:drools="http://drools.org/schema/drools-spring"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd http://drools.org/schema/drools-spring http://drools.org/schema/drools-spring.xsd">
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://drools.org/schema/drools-spring http://drools.org/schema/drools-spring.xsd">
 
-    <context:annotation-config />
-    <context:component-scan base-package="by.andver"/>
 
     <drools:kbase id="employeeBase">
         <drools:resources>

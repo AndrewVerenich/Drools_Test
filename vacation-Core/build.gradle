@@ -1,0 +1,23 @@
+plugins {
+    id 'java'
+}
+
+group 'by.andver'
+version '1.0-SNAPSHOT'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+def springVersion="4.3.18.RELEASE"
+def droolsVersion="5.4.0.Final"
+dependencies {
+    compile group: 'org.springframework', name: 'spring-core', version: "$springVersion"
+    compile group: 'org.springframework', name: 'spring-context', version: "$springVersion"
+    compile group: 'org.springframework', name: 'spring-beans', version: "$springVersion"
+    compile group: 'org.drools', name: 'drools-spring', version: "$droolsVersion"
+    compile group: 'org.drools', name: 'drools-decisiontables', version: "$droolsVersion"
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+    compile project (':vacation-model')
+}

@@ -1,6 +1,8 @@
 plugins {
     id 'java'
+    id 'application'
 }
+mainClassName="by.andver.Main"
 
 group 'by.andver'
 version '1.0-SNAPSHOT'
@@ -13,4 +15,5 @@ repositories {
 
 dependencies {
     testCompile group: 'junit', name: 'junit', version: '4.12'
+    compile project (':vacation-Core')
 }
