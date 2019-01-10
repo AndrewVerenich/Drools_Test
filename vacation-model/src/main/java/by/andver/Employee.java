@@ -10,14 +10,8 @@ public class Employee {
     private LocalDate employmentDate;
     private int vacationsDays;
 
-
-    public Employee() {
-    }
-
-    public long getWorkingYears(){
-        LocalDate l1=LocalDate.from(employmentDate);
-        LocalDate l2=LocalDate.now();
-        return ChronoUnit.YEARS.between(l1,l2);
+    public long getWorkingYears() {
+        return ChronoUnit.YEARS.between(LocalDate.from(employmentDate), LocalDate.now());
     }
 
     public String getName() {
