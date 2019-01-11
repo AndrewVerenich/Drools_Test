@@ -40,22 +40,28 @@ task ('gDriveLoadFile') {
         ]
     }
 
+
     doLast {
         downloadFile(getInputProperties())
+
     }
 }
-//
+
+
+
 void downloadFile(Map fileProperties,
-                  String projectName = "rightslink-bdd-generator/rl-qp-bdd-generator",
-                  String relativeProjectPath = "src/main/resources/excel") {
+                  String projectName = "gradle",
+                  String relativeProjectPath = "resources") {
+
     GoogleDriveLoader googleDriveLoader = GoogleDriveLoaderWrapper.createGoogleDriveLoader()
     if (isNull(googleDriveLoader)) {
         return
     }
 
     def filesDef = new JsonSlurper().parseText(new File("${rootProject.projectDir}/gradle/resources/files.json").text).files
-
     def files
+
+
     if (fileProperties.alias != "") {
         Set aliases = fileProperties.alias.split('[,]') as Set
         files = filesDef.findAll { aliases.contains(it.alias) }
@@ -69,12 +75,12 @@ void downloadFile(Map fileProperties,
         def dir = new File(savePath)
         dir.mkdirs()
 
-        println "Google Drive Download File. Alias: [${it.alias}] File id: [${it.fileId}] Save path: [${savePath}]"
+        println "Google Drive Download File. Alias: [${it.alias}] File id: [${it.fileId}] File name: [${it.fileName}] Save path: [${savePath}]"
 
         GoogleFile file = googleDriveLoader.getFileById(it.fileId as String)
         def fileName = it.fileName ?: file.getName()
 
-        googleDriveLoader.downloadFile(file.getId()).writeTo new FileOutputStream(new File(dir, "${fileName}.xlsx"))
+        googleDriveLoader.downloadFile(file.getId()).writeTo new FileOutputStream(new File(dir, "${fileName}.xls"))
 
         println "Downloaded file Id: [${file.getId()}] Name: [${fileName}]"
     }

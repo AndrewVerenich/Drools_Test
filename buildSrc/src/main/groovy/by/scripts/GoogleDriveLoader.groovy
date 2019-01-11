@@ -8,6 +8,8 @@ import com.google.api.client.http.HttpTransport
 import com.google.api.client.json.JsonFactory
 import com.google.api.client.json.jackson2.JacksonFactory
 import com.google.api.services.drive.Drive
+import com.google.api.services.drive.model.File as GoogleFile
+
 
 /**
  * This class provides access to google drive
@@ -40,6 +42,7 @@ class GoogleDriveLoader {
     private final Drive drive
 
     GoogleDriveLoader(final String clientId, final String clientSecret, final String refreshToken) {
+
         drive = new Drive.Builder(HTTP_TRANSPORT, JSON_FACTORY, createGoogleCredential(clientId, clientSecret, refreshToken)).build()
     }
 
@@ -57,7 +60,8 @@ class GoogleDriveLoader {
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream()
 
         drive.files()
-                .export(fileId, "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet")
+//                .export(fileId, "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet")
+                .get(fileId)
                 .executeMediaAndDownloadTo(outputStream)
 
         outputStream
@@ -71,7 +75,7 @@ class GoogleDriveLoader {
                 .getFiles()
     }
 
-    File getFileById(final String fileId) throws TokenResponseException {
+    GoogleFile getFileById(final String fileId) throws TokenResponseException {
         drive.files().get(fileId).execute()
     }
 }

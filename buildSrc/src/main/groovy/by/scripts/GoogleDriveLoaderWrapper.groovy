@@ -1,5 +1,7 @@
 package by.scripts
 
+import groovy.json.JsonSlurper
+
 class GoogleDriveLoaderWrapper {
     static boolean filePropertiesValid(final Map fileProperties) {
         fileProperties.containsKey("fileId") &&
@@ -36,9 +38,11 @@ class GoogleDriveLoaderWrapper {
     }
 
     static GoogleDriveLoader createGoogleDriveLoader() {
-        def clientId = System.getProperty("clientId", "")
-        def clientSecret = System.getProperty("clientSecret", "")
-        def refreshToken = System.getProperty("refreshToken", "")
+        def jsonCred=new JsonSlurper().parseText(new File("gradle/resources/credentials.json").text)
+
+        def clientId = jsonCred.clientId
+        def clientSecret = jsonCred.clientSecret
+        def refreshToken = jsonCred.refreshToken
 
         if (clientId == "" || clientSecret == "" || refreshToken == "") return null
 
