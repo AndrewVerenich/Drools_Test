@@ -1,0 +1,18 @@
+import by.scripts.GoogleDriveLoader
+
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath "com.google.api-client:google-api-client:$googleApiClient"
+        classpath "org.codehaus.groovy:groovy-all:$groovyVersion"
+    }
+}
+
+task("downloadRules"){
+    doLast {
+        println("Download!")
+        GoogleDriveLoader loader = new GoogleDriveLoader()
+    }
+}
