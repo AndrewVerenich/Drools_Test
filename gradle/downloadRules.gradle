@@ -1,4 +1,8 @@
 import by.scripts.GoogleDriveLoader
+import by.scripts.GoogleDriveLoaderWrapper
+import com.google.api.services.drive.model.File as GoogleFile
+import groovy.json.JsonSlurper
+import static java.util.Objects.isNull
 
 buildscript {
     repositories {
@@ -10,9 +14,68 @@ buildscript {
     }
 }
 
-task("downloadRules"){
+
+/**
+ *  How to run:
+ *  ./gradlew [module name]:gDriveLoadFile -DclientSecret="" -DclientId="" -DrefreshToken="" -DfileId=""
+ *
+ *  Parameters:
+ *  fileId - file id from google drive
+ *  savePath - path, where story should be stored. Path relative to module. If parameter is absent then default path is: src/main/resources/excel/.
+ *  fileName - specify name, for downloaded file
+ *  alias - if filedId, savePath and fileName exists, then they will be loaded from qp-matrixes.json
+ */
+task ('gDriveLoadFile') {
+    final String KEY_SAVE_PATH = "savePath"
+    final String KEY_FILE_ID = "fileId"
+    final String KEY_FILE_ALIAS = "alias"
+    final String KEY_FILE_NAME = "fileName"
+
+    def getInputProperties = {
+        return [
+                fileId: System.getProperty(KEY_FILE_ID, ""),
+                savePath: System.getProperty(KEY_SAVE_PATH, null),
+                alias: System.getProperty(KEY_FILE_ALIAS, ""),
+                fileName: System.getProperty(KEY_FILE_NAME, null)
+        ]
+    }
+
     doLast {
-        println("Download!")
-        GoogleDriveLoader loader = new GoogleDriveLoader()
+        downloadFile(getInputProperties())
+    }
+}
+//
+void downloadFile(Map fileProperties,
+                  String projectName = "rightslink-bdd-generator/rl-qp-bdd-generator",
+                  String relativeProjectPath = "src/main/resources/excel") {
+    GoogleDriveLoader googleDriveLoader = GoogleDriveLoaderWrapper.createGoogleDriveLoader()
+    if (isNull(googleDriveLoader)) {
+        return
+    }
+
+    def filesDef = new JsonSlurper().parseText(new File("${rootProject.projectDir}/gradle/resources/files.json").text).files
+
+    def files
+    if (fileProperties.alias != "") {
+        Set aliases = fileProperties.alias.split('[,]') as Set
+        files = filesDef.findAll { aliases.contains(it.alias) }
+    } else if (fileProperties.fileId != "")
+        files = [[fileId: fileProperties.fileId, fileName: fileProperties.fileName]]
+    else
+        files = filesDef
+
+    files.each {
+        String savePath = ("${rootProject.projectDir}/${projectName}/${relativeProjectPath}/${it.savePath ?: ""}") + "/"
+        def dir = new File(savePath)
+        dir.mkdirs()
+
+        println "Google Drive Download File. Alias: [${it.alias}] File id: [${it.fileId}] Save path: [${savePath}]"
+
+        GoogleFile file = googleDriveLoader.getFileById(it.fileId as String)
+        def fileName = it.fileName ?: file.getName()
+
+        googleDriveLoader.downloadFile(file.getId()).writeTo new FileOutputStream(new File(dir, "${fileName}.xlsx"))
+
+        println "Downloaded file Id: [${file.getId()}] Name: [${fileName}]"
     }
 }

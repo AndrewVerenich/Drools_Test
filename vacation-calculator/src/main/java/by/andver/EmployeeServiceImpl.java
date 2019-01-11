@@ -18,4 +18,8 @@ public class EmployeeServiceImpl {
         session.execute(employee);
         return employee.getVacationsDays();
     }
+    public int getIllDays(Employee employee){
+        session.execute(employee);
+        return employee.getIllDays();
+    }
 }

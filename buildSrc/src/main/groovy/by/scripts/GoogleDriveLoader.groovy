@@ -34,44 +34,44 @@ import com.google.api.services.drive.Drive
  * @see <a href="https://developers.google.com/identity/protocols/OAuth2#expiration">Token expiration</a>
  */
 class GoogleDriveLoader {
-//    private static final String FILE_FIELDS = 'nextPageToken, files(id, name, modifiedTime)'
-//    private static final JsonFactory JSON_FACTORY = JacksonFactory.getDefaultInstance()
-//    private static final HttpTransport HTTP_TRANSPORT = GoogleNetHttpTransport.newTrustedTransport()
-//    private final Drive drive
-//
-//    GoogleDriveLoader(final String clientId, final String clientSecret, final String refreshToken) {
-//        drive = new Drive.Builder(HTTP_TRANSPORT, JSON_FACTORY, createGoogleCredential(clientId, clientSecret, refreshToken)).build()
-//    }
-//
-//    static private GoogleCredential createGoogleCredential(final String clientId, final String clientSecret, final String refreshToken) {
-//        String accessToken = new GoogleRefreshTokenRequest(HTTP_TRANSPORT, JSON_FACTORY, refreshToken, clientId, clientSecret).execute().getAccessToken()
-//        new GoogleCredential.Builder()
-//                .setClientSecrets(clientId, clientSecret)
-//                .setJsonFactory(JSON_FACTORY)
-//                .setTransport(HTTP_TRANSPORT).build()
-//                .setRefreshToken(refreshToken)
-//                .setAccessToken(accessToken)
-//    }
-//
-//    ByteArrayOutputStream downloadFile(final String fileId) throws TokenResponseException {
-//        ByteArrayOutputStream outputStream = new ByteArrayOutputStream()
-//
-//        drive.files()
-//                .export(fileId, "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet")
-//                .executeMediaAndDownloadTo(outputStream)
-//
-//        outputStream
-//    }
-//
-//    List<File> getFilesFromFolder(final String folderId) throws TokenResponseException {
-//        drive.files().list()
-//                .setQ("'${folderId}' in parents and mimeType != 'application/vnd.google-apps.folder' and trashed = false")
-//                .setFields(FILE_FIELDS)
-//                .execute()
-//                .getFiles()
-//    }
-//
-//    File getFileById(final String fileId) throws TokenResponseException {
-//        drive.files().get(fileId).execute()
-//    }
+    private static final String FILE_FIELDS = 'nextPageToken, files(id, name, modifiedTime)'
+    private static final JsonFactory JSON_FACTORY = JacksonFactory.getDefaultInstance()
+    private static final HttpTransport HTTP_TRANSPORT = GoogleNetHttpTransport.newTrustedTransport()
+    private final Drive drive
+
+    GoogleDriveLoader(final String clientId, final String clientSecret, final String refreshToken) {
+        drive = new Drive.Builder(HTTP_TRANSPORT, JSON_FACTORY, createGoogleCredential(clientId, clientSecret, refreshToken)).build()
+    }
+
+    static private GoogleCredential createGoogleCredential(final String clientId, final String clientSecret, final String refreshToken) {
+        String accessToken = new GoogleRefreshTokenRequest(HTTP_TRANSPORT, JSON_FACTORY, refreshToken, clientId, clientSecret).execute().getAccessToken()
+        new GoogleCredential.Builder()
+                .setClientSecrets(clientId, clientSecret)
+                .setJsonFactory(JSON_FACTORY)
+                .setTransport(HTTP_TRANSPORT).build()
+                .setRefreshToken(refreshToken)
+                .setAccessToken(accessToken)
+    }
+
+    ByteArrayOutputStream downloadFile(final String fileId) throws TokenResponseException {
+        ByteArrayOutputStream outputStream = new ByteArrayOutputStream()
+
+        drive.files()
+                .export(fileId, "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet")
+                .executeMediaAndDownloadTo(outputStream)
+
+        outputStream
+    }
+
+    List<File> getFilesFromFolder(final String folderId) throws TokenResponseException {
+        drive.files().list()
+                .setQ("'${folderId}' in parents and mimeType != 'application/vnd.google-apps.folder' and trashed = false")
+                .setFields(FILE_FIELDS)
+                .execute()
+                .getFiles()
+    }
+
+    File getFileById(final String fileId) throws TokenResponseException {
+        drive.files().get(fileId).execute()
+    }
 }

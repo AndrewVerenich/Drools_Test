@@ -7,12 +7,13 @@ version '1.0-SNAPSHOT'
 
 sourceCompatibility = 1.8
 
-apply from: file("${rootProject.projectDir}/gradle/downloadRules.gradle")
-
 repositories {
     mavenCentral()
 }
 
 dependencies {
+    compile "org.drools:drools-decisiontables:$droolsVersion"
+    compile "org.kie:kie-api:$droolsVersion"
+
     testCompile "junit:junit:${junitVersion}"
 }

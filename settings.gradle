@@ -4,4 +4,6 @@ include 'vacation-calculator'
 include 'vacation-Core'
 include 'vacation-model'
 include 'vacation-days'
+include 'buildSrc'
+include 'vacation-illDays'
 

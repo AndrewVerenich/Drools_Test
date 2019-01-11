@@ -3,9 +3,23 @@ version '1.0-SNAPSHOT'
 
 apply plugin: 'groovy'
 
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath "com.google.api-client:google-api-client:$googleApiClient"
+        classpath "org.codehaus.groovy:groovy-all:$groovyVersion"
+    }
+}
+
 repositories {
     mavenCentral()
 }
+
+sourceSets.main.groovy.srcDir 'src/main/groovy'
+
+
 dependencies {
     compile "com.google.api-client:google-api-client:$googleApiClient"
     compile "com.google.oauth-client:google-oauth-client-jetty:$googleOAuthClientJetty"

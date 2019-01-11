@@ -9,6 +9,7 @@ public class Employee {
     private int age;
     private LocalDate employmentDate;
     private int vacationsDays;
+    private int illDays;
 
     public long getWorkingYears() {
         return ChronoUnit.YEARS.between(LocalDate.from(employmentDate), LocalDate.now());
@@ -52,5 +53,13 @@ public class Employee {
 
     public void setVacationsDays(int vacationsDays) {
         this.vacationsDays = vacationsDays;
+    }
+
+    public int getIllDays() {
+        return illDays;
+    }
+
+    public void setIllDays(int illDays) {
+        this.illDays = illDays;
     }
 }

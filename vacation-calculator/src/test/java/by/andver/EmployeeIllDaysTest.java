@@ -11,7 +11,7 @@ import java.time.LocalDate;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = AppConfiguration.class)
-public class EmployeeVacationDaysTest {
+public class EmployeeIllDaysTest {
     @Autowired
     EmployeeServiceImpl employeeService;
 
@@ -19,13 +19,13 @@ public class EmployeeVacationDaysTest {
     public void oneYearEmployedTest() {
         Employee employee = new Employee();
         employee.setEmploymentDate(LocalDate.now().minusYears(1));
-        Assert.assertEquals(24, employeeService.getVacDays(employee));
+        Assert.assertEquals(7, employeeService.getIllDays(employee));
     }
 
     @Test
     public void treeYearEmployedTest() {
         Employee employee = new Employee();
         employee.setEmploymentDate(LocalDate.now().minusYears(3));
-        Assert.assertEquals(28, employeeService.getVacDays(employee));
+        Assert.assertEquals(8, employeeService.getIllDays(employee));
     }
 }

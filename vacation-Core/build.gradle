@@ -14,6 +14,7 @@ repositories {
 dependencies {
     compile project(':vacation-model')
     compile project(':vacation-days')
+    compile project(':vacation-illDays')
 
     compile group: 'org.springframework', name: 'spring-core', version: "$springVersion"
     compile group: 'org.springframework', name: 'spring-context', version: "$springVersion"
