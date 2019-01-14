@@ -100,4 +100,7 @@ task('copyRules'){
 
     XlsSplitter.split(DECISION_TABLE_NAME,DOWNLOAD_PATH,VAC_DAYS_PATH,SHEET_VAC_DAYS)
     XlsSplitter.split(DECISION_TABLE_NAME,DOWNLOAD_PATH,ILL_DAYS_PATH,SHEET_ILL_DAYS)
+
+//    File decTables=new File (DOWNLOAD_PATH+'/'+DECISION_TABLE_NAME)
+//    decTables.delete()
 }
