@@ -23,7 +23,7 @@ have "vacDays" and "illDays" sheets.
   ]
 }
 ```
-+ Set up Google Drive API in your account and write your credentials in gradle/resources/credentials.json
++ Set up Google Drive API in your account and write your credentials in gradle/resources/credentials.json. More information on https://developers.google.com/drive/api/v3/about-auth
 ```json
 {
   "clientId": "your clientId",
