@@ -1,5 +1,6 @@
 import by.scripts.GoogleDriveLoader
 import by.scripts.GoogleDriveLoaderWrapper
+import by.scripts.XlsSplitter
 import com.google.api.services.drive.model.File as GoogleFile
 import groovy.json.JsonSlurper
 import static java.util.Objects.isNull
@@ -14,7 +15,6 @@ buildscript {
     }
 }
 
-
 /**
  *  How to run:
  *  ./gradlew [module name]:gDriveLoadFile -DclientSecret="" -DclientId="" -DrefreshToken="" -DfileId=""
@@ -23,7 +23,7 @@ buildscript {
  *  fileId - file id from google drive
  *  savePath - path, where story should be stored. Path relative to module. If parameter is absent then default path is: src/main/resources/excel/.
  *  fileName - specify name, for downloaded file
- *  alias - if filedId, savePath and fileName exists, then they will be loaded from qp-matrixes.json
+ *  alias - if filedId, savePath and fileName exists, then they will be loaded from files.json
  */
 task ('gDriveLoadFile') {
     final String KEY_SAVE_PATH = "savePath"
@@ -84,4 +84,20 @@ void downloadFile(Map fileProperties,
 
         println "Downloaded file Id: [${file.getId()}] Name: [${fileName}]"
     }
+}
+
+task('copyRules'){
+    dependsOn ':gDriveLoadFile'
+    final String DECISION_TABLE_NAME = "Employee.xls"
+    final String DOWNLOAD_PATH = "gradle/resources"
+
+    final String VAC_DAYS_PATH = "vacation-days/src/main/resources"
+    final String ILL_DAYS_PATH = "vacation-illDays/src/main/resources"
+
+    final String SHEET_VAC_DAYS = "vacDays"
+    final String SHEET_ILL_DAYS = "illDays"
+
+
+    XlsSplitter.split(DECISION_TABLE_NAME,DOWNLOAD_PATH,VAC_DAYS_PATH,SHEET_VAC_DAYS)
+    XlsSplitter.split(DECISION_TABLE_NAME,DOWNLOAD_PATH,ILL_DAYS_PATH,SHEET_ILL_DAYS)
 }

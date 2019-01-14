@@ -10,6 +10,8 @@ buildscript {
     dependencies {
         classpath "com.google.api-client:google-api-client:$googleApiClient"
         classpath "org.codehaus.groovy:groovy-all:$groovyVersion"
+        classpath group: 'org.apache.poi', name: 'poi-ooxml', version: '4.0.1'
+
     }
 }
 
@@ -24,5 +26,8 @@ dependencies {
     compile "com.google.api-client:google-api-client:$googleApiClient"
     compile "com.google.oauth-client:google-oauth-client-jetty:$googleOAuthClientJetty"
     compile "com.google.apis:google-api-services-drive:$googleAPIServicesDrive"
+    compile group: 'org.apache.poi', name: 'poi-ooxml', version: '4.0.1'
+
+
     compile "org.codehaus.groovy:groovy-all:$groovyVersion"
 }
