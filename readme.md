@@ -1,4 +1,4 @@
-#Drools_test
+# Drools_test
 This application is used to calculate vacation and illness days of an employee. 
 ## Getting Started
 Clone this repo to your local machine using:
