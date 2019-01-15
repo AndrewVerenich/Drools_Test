@@ -88,19 +88,10 @@ void downloadFile(Map fileProperties,
 
 task('copyRules'){
     dependsOn ':gDriveLoadFile'
-    final String DECISION_TABLE_NAME = "Employee.xls"
-    final String DOWNLOAD_PATH = "gradle/resources"
 
-    final String VAC_DAYS_PATH = "vacation-days/src/main/resources"
-    final String ILL_DAYS_PATH = "vacation-illDays/src/main/resources"
+    final String RULES_CONFIG_LOC="${rootProject.rootDir}/gradle/resources/files.json"
+    final String DOWNLOAD_PATH="${rootProject.rootDir}/gradle/resources/"
+    final String RELATIVE_RESOURCE_PATH="/src/main/resources"
 
-    final String SHEET_VAC_DAYS = "vacDays"
-    final String SHEET_ILL_DAYS = "illDays"
-
-
-    XlsSplitter.split(DECISION_TABLE_NAME,DOWNLOAD_PATH,VAC_DAYS_PATH,SHEET_VAC_DAYS)
-    XlsSplitter.split(DECISION_TABLE_NAME,DOWNLOAD_PATH,ILL_DAYS_PATH,SHEET_ILL_DAYS)
-
-//    File decTables=new File (DOWNLOAD_PATH+'/'+DECISION_TABLE_NAME)
-//    decTables.delete()
+    XlsSplitter.split(RULES_CONFIG_LOC,"${rootProject.rootDir}",DOWNLOAD_PATH, RELATIVE_RESOURCE_PATH)
 }

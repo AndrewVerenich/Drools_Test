@@ -4,7 +4,19 @@
       "alias": "file_alias",
       "fileId": "1T5Uf_XMU3oYE-l0RGFDk7-Ah2Ij1PIvd",
       "savePath": "",
-      "fileName": "Employee"
+      "fileName": "Employee",
+      "documents": [
+        {
+          "documentName": "vacDays",
+          "sheetName": "vacDays",
+          "projectName": "vacation-days"
+        },
+        {
+          "documentName": "illDays",
+          "sheetName": "illDays",
+          "projectName": "vacation-illDays"
+        }
+      ]
     }
   ]
 }

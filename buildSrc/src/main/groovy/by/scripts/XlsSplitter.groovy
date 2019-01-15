@@ -1,11 +1,25 @@
 package by.scripts
 
+import groovy.json.JsonSlurper
 import org.apache.poi.hssf.usermodel.HSSFSheet
 import org.apache.poi.hssf.usermodel.HSSFWorkbook
 
 
 class XlsSplitter {
-    static void split(String fileName,String downloadPath, String targetPath, String sheetName){
+    static void split(String path, String rootDir, String downloadPath, String relResourcePath){
+        def rulesJson=new JsonSlurper().parseText(new File(path).text)
+        rulesJson.files.each{
+            def fileName=it.fileName
+            it.documents.each{
+                splitOnSheets(fileName+'.xls',
+                        downloadPath,
+                        rootDir+'/'+it.projectName+relResourcePath,
+                        it.sheetName)
+            }
+        }
+    }
+
+    static void splitOnSheets(String fileName,String downloadPath, String targetPath, String sheetName){
 
         File file=new File(downloadPath+'/'+fileName)
         FileInputStream inputStream=new FileInputStream(file)
