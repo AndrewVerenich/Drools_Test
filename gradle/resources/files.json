@@ -1,22 +1,30 @@
 {
   "files": [
     {
-      "alias": "file_alias",
-      "fileId": "1T5Uf_XMU3oYE-l0RGFDk7-Ah2Ij1PIvd",
-      "savePath": "",
-      "fileName": "Employee",
-      "documents": [
-        {
+      "alias": "vacation",
+      "fileId": "1_dEV0Szc8O-yQ4tmB0msY5M-zcbWnJxz",
+      "projectName": "vacation-days",
+      "fileName": "EmplVacDays",
+      "documents": {
+        "vacDays": {
           "documentName": "vacDays",
-          "sheetName": "vacDays",
+          "sheetName": "UpdatedVacDays",
           "projectName": "vacation-days"
-        },
-        {
-          "documentName": "illDays",
-          "sheetName": "illDays",
+        }
+      }
+    },
+    {
+      "alias": "illness",
+      "fileId": "1ZBV0KvnHoe8gWbitMa51MMhwLosYvFFJ",
+      "projectName": "vacation-illDays",
+      "fileName": "EmplIllDays",
+      "documents": {
+        "illDays": {
+          "documentName": "UpdateIllDays",
+          "sheetName": "UpdatedIllDays",
           "projectName": "vacation-illDays"
         }
-      ]
+      }
     }
   ]
 }

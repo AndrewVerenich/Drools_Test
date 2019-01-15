@@ -3,6 +3,7 @@ import by.scripts.GoogleDriveLoaderWrapper
 import by.scripts.XlsSplitter
 import com.google.api.services.drive.model.File as GoogleFile
 import groovy.json.JsonSlurper
+
 import static java.util.Objects.isNull
 
 buildscript {
@@ -22,20 +23,20 @@ buildscript {
  *  Parameters:
  *  fileId - file id from google drive
  *  savePath - path, where story should be stored. Path relative to module. If parameter is absent then default path is: src/main/resources/excel/.
- *  fileName - specify name, for downloaded file
- *  alias - if filedId, savePath and fileName exists, then they will be loaded from files.json
+ *  docName - specify name, for downloaded file
+ *  alias - if filedId, savePath and docName exists, then they will be loaded from files.json
  */
-task ('gDriveLoadFile') {
+task('gDriveLoadFile') {
     final String KEY_SAVE_PATH = "savePath"
     final String KEY_FILE_ID = "fileId"
     final String KEY_FILE_ALIAS = "alias"
-    final String KEY_FILE_NAME = "fileName"
+    final String KEY_FILE_NAME = "docName"
 
     def getInputProperties = {
         return [
-                fileId: System.getProperty(KEY_FILE_ID, ""),
+                fileId  : System.getProperty(KEY_FILE_ID, ""),
                 savePath: System.getProperty(KEY_SAVE_PATH, null),
-                alias: System.getProperty(KEY_FILE_ALIAS, ""),
+                alias   : System.getProperty(KEY_FILE_ALIAS, ""),
                 fileName: System.getProperty(KEY_FILE_NAME, null)
         ]
     }
@@ -46,7 +47,6 @@ task ('gDriveLoadFile') {
 
     }
 }
-
 
 
 void downloadFile(Map fileProperties,
@@ -86,12 +86,14 @@ void downloadFile(Map fileProperties,
     }
 }
 
-task('copyRules'){
+task('copyRules') {
     dependsOn ':gDriveLoadFile'
 
-    final String RULES_CONFIG_LOC="${rootProject.rootDir}/gradle/resources/files.json"
-    final String DOWNLOAD_PATH="${rootProject.rootDir}/gradle/resources/"
-    final String RELATIVE_RESOURCE_PATH="/src/main/resources"
+    final String RULES_CONFIG = "${rootProject.rootDir}/gradle/resources/files.json"
+    final String DOWNLOAD_PATH = "${rootProject.rootDir}/gradle/resources"
+    final String RELATIVE_RESOURCE_PATH = "src/main/resources"
 
-    XlsSplitter.split(RULES_CONFIG_LOC,"${rootProject.rootDir}",DOWNLOAD_PATH, RELATIVE_RESOURCE_PATH)
+    doLast {
+        XlsSplitter.split(RULES_CONFIG, "${rootProject.rootDir}", DOWNLOAD_PATH, RELATIVE_RESOURCE_PATH)
+    }
 }
