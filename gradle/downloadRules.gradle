@@ -23,14 +23,14 @@ buildscript {
  *  Parameters:
  *  fileId - file id from google drive
  *  savePath - path, where story should be stored. Path relative to module. If parameter is absent then default path is: src/main/resources/excel/.
- *  docName - specify name, for downloaded file
- *  alias - if filedId, savePath and docName exists, then they will be loaded from files.json
+ *  fileName - specify name, for downloaded file
+ *  alias - if filedId, savePath and fileName exists, then they will be loaded from files.json
  */
 task('gDriveLoadFile') {
     final String KEY_SAVE_PATH = "savePath"
     final String KEY_FILE_ID = "fileId"
     final String KEY_FILE_ALIAS = "alias"
-    final String KEY_FILE_NAME = "docName"
+    final String KEY_FILE_NAME = "fileName"
 
     def getInputProperties = {
         return [

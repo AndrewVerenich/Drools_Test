@@ -20,7 +20,7 @@
       "fileName": "EmplIllDays",
       "documents": {
         "illDays": {
-          "documentName": "UpdateIllDays",
+          "documentName": "illDays",
           "sheetName": "UpdatedIllDays",
           "projectName": "vacation-illDays"
         }

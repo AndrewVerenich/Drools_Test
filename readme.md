@@ -17,8 +17,15 @@ have "vacDays" and "illDays" sheets.
     {
       "alias": "your alias",
       "fileId": "your fileId",
-      "savePath": "",
-      "fileName": "your fileName"
+      "projectName": "default projectName",
+      "fileName": "your fileName",
+      "documents": {
+        "sheetName": {
+          "documentName": "new docName",
+          "sheetName": "new sheetName",
+          "projectName": "projectName"
+        }
+      }
     }
   ]
 }

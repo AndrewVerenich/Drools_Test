@@ -21,15 +21,17 @@ class XlsSplitter {
                         downloadPath,
                         rootDir + '/' + projectName + '/' + relResourcePath,
                         sheetName,
-                        newSheetName)
+                        newSheetName,
+                        it.getValue().documentName)
             }
         }
     }
 
-    static void splitOnSheets(String docName, String downloadPath, String targetPath, String sheetName, String newSheetName) {
+    static void splitOnSheets(String docName, String downloadPath, String targetPath, String sheetName,
+                              String newSheetName, String newDocName) {
         HSSFWorkbook workbook = getWorkbook(downloadPath, docName)
         removeAllSheetsExceptOne(workbook, sheetName, newSheetName)
-        saveWorkbook(targetPath, sheetName, workbook)
+        saveWorkbook(targetPath, newDocName, workbook)
     }
 
     private static HSSFWorkbook getWorkbook(String downloadPath, String docName) {
@@ -39,8 +41,8 @@ class XlsSplitter {
         workbook
     }
 
-    private static void saveWorkbook(String targetPath, String sheetName, HSSFWorkbook workbook) {
-        File destFile = new File(targetPath + '/' + sheetName + '.xls')
+    private static void saveWorkbook(String targetPath, String newDocName, HSSFWorkbook workbook) {
+        File destFile = new File(targetPath + '/' + newDocName + '.xls')
         FileOutputStream output = new FileOutputStream(destFile)
         workbook.write(output)
     }
