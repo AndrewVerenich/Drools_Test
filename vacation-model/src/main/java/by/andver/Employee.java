@@ -10,6 +10,15 @@ public class Employee {
     private LocalDate employmentDate;
     private int vacationsDays;
     private int illDays;
+    private boolean isActive;
+
+    public boolean isActive() {
+        return isActive;
+    }
+
+    public void setActive(boolean active) {
+        isActive = active;
+    }
 
     public long getWorkingYears() {
         return ChronoUnit.YEARS.between(LocalDate.from(employmentDate), LocalDate.now());

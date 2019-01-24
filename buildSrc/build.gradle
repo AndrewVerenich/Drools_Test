@@ -10,7 +10,9 @@ buildscript {
     dependencies {
         classpath "com.google.api-client:google-api-client:$googleApiClient"
         classpath "org.codehaus.groovy:groovy-all:$groovyVersion"
-        classpath group: 'org.apache.poi', name: 'poi-ooxml', version: '4.0.1'
+        classpath group: 'org.apache.poi', name: 'poi-ooxml', version: '3.15'
+        classpath group: 'org.drools', name: 'drools-compiler', version: '7.5.0.Final'
+        classpath group: 'org.drools', name: 'drools-decisiontables', version: '7.5.0.Final'
 
     }
 }
@@ -26,7 +28,9 @@ dependencies {
     compile "com.google.api-client:google-api-client:$googleApiClient"
     compile "com.google.oauth-client:google-oauth-client-jetty:$googleOAuthClientJetty"
     compile "com.google.apis:google-api-services-drive:$googleAPIServicesDrive"
-    compile group: 'org.apache.poi', name: 'poi-ooxml', version: '4.0.1'
+    compile group: 'org.apache.poi', name: 'poi-ooxml', version: '3.15'
+    compile group: 'org.drools', name: 'drools-compiler', version: '7.5.0.Final'
+    compile group: 'org.drools', name: 'drools-decisiontables', version: '7.5.0.Final'
 
 
     compile "org.codehaus.groovy:groovy-all:$groovyVersion"

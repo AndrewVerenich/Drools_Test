@@ -1,27 +1,14 @@
 {
   "files": [
     {
-      "alias": "vacation",
-      "fileId": "1_dEV0Szc8O-yQ4tmB0msY5M-zcbWnJxz",
-      "projectName": "vacation-days",
-      "fileName": "EmplVacDays",
-      "documents": {
-        "vacDays": {
-          "documentName": "vacDays",
-          "sheetName": "UpdatedVacDays",
-          "projectName": "vacation-days"
-        }
-      }
-    },
-    {
       "alias": "illness",
-      "fileId": "1ZBV0KvnHoe8gWbitMa51MMhwLosYvFFJ",
+      "fileId": "1PsZ7-NXD0HT1UAoFPS2phJs0yOLSfoc8kuWOOBempaI",
       "projectName": "vacation-illDays",
-      "fileName": "EmplIllDays",
+      "fileName": "newTable",
       "documents": {
         "illDays": {
           "documentName": "illDays",
-          "sheetName": "UpdatedIllDays",
+          "sheetName": "UpdatedVacDays",
           "projectName": "vacation-illDays"
         }
       }

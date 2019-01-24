@@ -1,3 +1,4 @@
+import by.scripts.DrlFileGenerator
 import by.scripts.GoogleDriveLoader
 import by.scripts.GoogleDriveLoaderWrapper
 import by.scripts.XlsSplitter
@@ -80,7 +81,7 @@ void downloadFile(Map fileProperties,
         GoogleFile file = googleDriveLoader.getFileById(it.fileId as String)
         def fileName = it.fileName ?: file.getName()
 
-        googleDriveLoader.downloadFile(file.getId()).writeTo new FileOutputStream(new File(dir, "${fileName}.xls"))
+        googleDriveLoader.downloadFile(file.getId()).writeTo new FileOutputStream(new File(dir, "${fileName}.xlsx"))
 
         println "Downloaded file Id: [${file.getId()}] Name: [${fileName}]"
     }
@@ -95,5 +96,16 @@ task('copyRules') {
 
     doLast {
         XlsSplitter.split(RULES_CONFIG, "${rootProject.rootDir}", DOWNLOAD_PATH, RELATIVE_RESOURCE_PATH)
+    }
+}
+
+task('exportDrlRules') {
+    dependsOn ':copyRules'
+    final String RULES_CONFIG = "${rootProject.rootDir}/gradle/resources/files.json"
+    final String DRL_SAVE_PATH = "${rootProject.rootDir}/gradle/resources/generatedDrlRules"
+    final String RELATIVE_RESOURCE_PATH = "src/main/resources"
+
+    doLast {
+        DrlFileGenerator.create(RULES_CONFIG, "${rootProject.rootDir}", DRL_SAVE_PATH, RELATIVE_RESOURCE_PATH)
     }
 }

@@ -18,6 +18,7 @@ public class EmployeeIllDaysTest {
     @Test
     public void oneYearEmployedTest() {
         Employee employee = new Employee();
+        employee.setActive(true);
         employee.setEmploymentDate(LocalDate.now().minusYears(1));
         Assert.assertEquals(7, employeeService.getIllDays(employee));
     }
@@ -25,6 +26,7 @@ public class EmployeeIllDaysTest {
     @Test
     public void treeYearEmployedTest() {
         Employee employee = new Employee();
+        employee.setActive(false);
         employee.setEmploymentDate(LocalDate.now().minusYears(3));
         Assert.assertEquals(8, employeeService.getIllDays(employee));
     }

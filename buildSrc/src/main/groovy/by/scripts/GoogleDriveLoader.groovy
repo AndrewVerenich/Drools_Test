@@ -60,8 +60,8 @@ class GoogleDriveLoader {
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream()
 
         drive.files()
-//                .export(fileId, "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet")
-                .get(fileId)
+                .export(fileId, "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet")
+//                .get(fileId)
                 .executeMediaAndDownloadTo(outputStream)
 
         outputStream

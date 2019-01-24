@@ -1,0 +1,19 @@
+package rules1;
+//generated from Decision Table
+import by.andver.Employee;
+// rule values at A10, header at A5
+rule "Less then 3 years"
+	when
+		$empl: Employee($empl.isActive()==true)
+	then
+		$empl.setIllDays(7);
+end
+
+// rule values at A11, header at A5
+rule "More then 3 years"
+	when
+		$empl: Employee($empl.isActive()==false)
+	then
+		$empl.setIllDays(8);
+end
+

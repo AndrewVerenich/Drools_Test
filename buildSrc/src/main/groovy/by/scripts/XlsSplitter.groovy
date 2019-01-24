@@ -1,8 +1,8 @@
 package by.scripts
 
 import groovy.json.JsonSlurper
-import org.apache.poi.hssf.usermodel.HSSFSheet
-import org.apache.poi.hssf.usermodel.HSSFWorkbook
+import org.apache.poi.xssf.usermodel.XSSFSheet
+import org.apache.poi.xssf.usermodel.XSSFWorkbook
 
 class XlsSplitter {
     static void split(String documentDescriptor, String rootDir, String downloadPath, String relResourcePath) {
@@ -13,11 +13,11 @@ class XlsSplitter {
             it.documents.each {
                 def sheetName = it.getKey()
                 def newSheetName = sheetName
-                if (!it.getValue().sheetName.equals(""))
+                if ("" != it.getValue().sheetName)
                     newSheetName = it.getValue().sheetName
-                if (!it.getValue().projectName.equals(""))
+                if ("" != it.getValue().projectName)
                     projectName = it.getValue().projectName
-                splitOnSheets(docName + '.xls',
+                splitOnSheets(docName + '.xlsx',
                         downloadPath,
                         rootDir + '/' + projectName + '/' + relResourcePath,
                         sheetName,
@@ -29,27 +29,27 @@ class XlsSplitter {
 
     static void splitOnSheets(String docName, String downloadPath, String targetPath, String sheetName,
                               String newSheetName, String newDocName) {
-        HSSFWorkbook workbook = getWorkbook(downloadPath, docName)
+        XSSFWorkbook workbook = getWorkbook(downloadPath, docName)
         removeAllSheetsExceptOne(workbook, sheetName, newSheetName)
         saveWorkbook(targetPath, newDocName, workbook)
     }
 
-    private static HSSFWorkbook getWorkbook(String downloadPath, String docName) {
+    private static XSSFWorkbook getWorkbook(String downloadPath, String docName) {
         File file = new File(downloadPath + '/' + docName)
         FileInputStream inputStream = new FileInputStream(file)
-        HSSFWorkbook workbook = new HSSFWorkbook(inputStream)
+        XSSFWorkbook workbook = new XSSFWorkbook(inputStream)
         workbook
     }
 
-    private static void saveWorkbook(String targetPath, String newDocName, HSSFWorkbook workbook) {
-        File destFile = new File(targetPath + '/' + newDocName + '.xls')
+    private static void saveWorkbook(String targetPath, String newDocName, XSSFWorkbook workbook) {
+        File destFile = new File(targetPath + '/' + newDocName + '.xlsx')
         FileOutputStream output = new FileOutputStream(destFile)
         workbook.write(output)
     }
 
-    private static void removeAllSheetsExceptOne(HSSFWorkbook workbook, String sheetName, String newSheetName) {
+    private static void removeAllSheetsExceptOne(XSSFWorkbook workbook, String sheetName, String newSheetName) {
         for (int i = workbook.getNumberOfSheets() - 1; i >= 0; i--) {
-            HSSFSheet tmpSheet = workbook.getSheetAt(i)
+            XSSFSheet tmpSheet = workbook.getSheetAt(i)
             if (!tmpSheet.getSheetName().equals(sheetName)) {
                 workbook.removeSheetAt(i)
             }
