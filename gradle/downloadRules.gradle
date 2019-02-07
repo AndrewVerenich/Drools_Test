@@ -100,7 +100,7 @@ task('copyRules') {
 }
 
 task('exportDrlRules') {
-    dependsOn ':copyRules'
+//    dependsOn ':copyRules'
     final String RULES_CONFIG = "${rootProject.rootDir}/gradle/resources/files.json"
     final String DRL_SAVE_PATH = "${rootProject.rootDir}/gradle/resources/generatedDrlRules"
     final String RELATIVE_RESOURCE_PATH = "src/main/resources"

@@ -8,8 +8,33 @@
       "documents": {
         "illDays": {
           "documentName": "illDays",
-          "sheetName": "UpdatedVacDays",
+          "sheetName": "SageUS-nw-steps",
           "projectName": "vacation-illDays"
+        },
+        "NWP": {
+          "sheetName": "SageUS-nw-steps",
+          "documentName": "SageUS-nw",
+          "projectName": "vacation-illDays"
+        },
+        "QP": {
+          "documentName": "SageUS-qp",
+          "projectName": "vacation-illDays",
+          "sheetName": "SageUS-qp-steps"
+        },
+        "OrderValidations": {
+          "documentName": "SageUS-order-validation",
+          "projectName": "vacation-illDays",
+          "sheetName": "SageUS-order-validation-steps"
+        },
+        "ADP": {
+          "documentName": "SageUS-adp",
+          "projectName": "vacation-illDays",
+          "sheetName": "SageUS-adp-steps"
+        },
+        "MainDroolsRules": {
+          "documentName": "SageUS",
+          "projectName": "vacation-illDays",
+          "sheetName": "SageUS-steps"
         }
       }
     }
